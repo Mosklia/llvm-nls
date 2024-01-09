@@ -19,6 +19,8 @@
 #include "llvm/ADT/StringRef.h"
 #include <optional>
 #include <vector>
+#include <cstdlib>
+#include <locale>
 
 namespace clang {
   class DiagnosticsEngine;
@@ -184,6 +186,9 @@ public:
 private:
   /// Information for uniquing and looking up custom diags.
   std::unique_ptr<diag::CustomDiagInfo> CustomDiagInfo;
+
+  const std::messages<char> &msg;
+  std::messages<char>::catalog msg_catalog;
 
 public:
   DiagnosticIDs();

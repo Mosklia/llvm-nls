@@ -17,6 +17,7 @@
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/ADT/SmallVector.h"
 #include "llvm/Support/ErrorHandling.h"
+#include <cstring>
 #include <map>
 #include <optional>
 using namespace clang;
@@ -389,9 +390,15 @@ namespace clang {
 // Common Diagnostic implementation
 //===----------------------------------------------------------------------===//
 
-DiagnosticIDs::DiagnosticIDs() {}
+static std::locale locale(std::getenv("LANG"));
+DiagnosticIDs::DiagnosticIDs()
+  : msg(std::use_facet<std::messages<char>>(locale)),
+    msg_catalog(msg.open("clang", locale)) {
+}
 
-DiagnosticIDs::~DiagnosticIDs() {}
+DiagnosticIDs::~DiagnosticIDs() {
+  msg.close(msg_catalog);
+}
 
 /// getCustomDiagID - Return an ID for a diagnostic with the specified message
 /// and level.  If this is the first request for this diagnostic, it is
@@ -447,11 +454,28 @@ bool DiagnosticIDs::isDefaultMappingAsError(unsigned DiagID) {
 
 /// getDescription - Given a diagnostic ID, return a description of the
 /// issue.
+static std::map<unsigned, std::string> descriptions;
 StringRef DiagnosticIDs::getDescription(unsigned DiagID) const {
+  StringRef ref;
+
   if (const StaticDiagInfoRec *Info = GetDiagInfo(DiagID))
-    return Info->getDescription();
-  assert(CustomDiagInfo && "Invalid CustomDiagInfo");
-  return CustomDiagInfo->getDescription(DiagID);
+  {
+    ref = Info->getDescription();
+  }
+  else
+  {
+    assert(CustomDiagInfo && "Invalid CustomDiagInfo");
+    ref = CustomDiagInfo->getDescription(DiagID);
+  }
+
+  if (descriptions.count(DiagID) == 0) {
+    std::string s;
+    s = msg.get(msg_catalog, 0, 0, ref.data());
+    descriptions[DiagID] = s;
+    // std::strcpy(descriptions[DiagID], s.data());
+    // descriptions[DiagID] = ref.data();
+  }
+  return StringRef(descriptions[DiagID]);
 }
 
 static DiagnosticIDs::Level toLevel(diag::Severity SV) {
