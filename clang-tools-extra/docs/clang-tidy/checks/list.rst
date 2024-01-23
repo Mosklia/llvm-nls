@@ -83,6 +83,7 @@ Clang-Tidy Checks
    :doc:`bugprone-bool-pointer-implicit-conversion <bugprone/bool-pointer-implicit-conversion>`, "Yes"
    :doc:`bugprone-branch-clone <bugprone/branch-clone>`,
    :doc:`bugprone-casting-through-void <bugprone/casting-through-void>`,
+   :doc:`bugprone-chained-comparison <bugprone/chained-comparison>`,
    :doc:`bugprone-compare-pointer-to-member-virtual-function <bugprone/compare-pointer-to-member-virtual-function>`,
    :doc:`bugprone-copy-constructor-init <bugprone/copy-constructor-init>`, "Yes"
    :doc:`bugprone-dangling-handle <bugprone/dangling-handle>`,
@@ -337,6 +338,7 @@ Clang-Tidy Checks
    :doc:`portability-simd-intrinsics <portability/simd-intrinsics>`,
    :doc:`portability-std-allocator-const <portability/std-allocator-const>`,
    :doc:`readability-avoid-const-params-in-decls <readability/avoid-const-params-in-decls>`, "Yes"
+   :doc:`readability-avoid-nested-conditional-operator <readability/avoid-nested-conditional-operator>`,
    :doc:`readability-avoid-return-with-void-value <readability/avoid-return-with-void-value>`,
    :doc:`readability-avoid-unconditional-preprocessor-if <readability/avoid-unconditional-preprocessor-if>`,
    :doc:`readability-braces-around-statements <readability/braces-around-statements>`, "Yes"
@@ -353,6 +355,7 @@ Clang-Tidy Checks
    :doc:`readability-identifier-length <readability/identifier-length>`,
    :doc:`readability-identifier-naming <readability/identifier-naming>`, "Yes"
    :doc:`readability-implicit-bool-conversion <readability/implicit-bool-conversion>`, "Yes"
+   :doc:`readability-redundant-inline-specifier <readability/redundant-inline-specifier>`, "Yes"
    :doc:`readability-inconsistent-declaration-parameter-name <readability/inconsistent-declaration-parameter-name>`, "Yes"
    :doc:`readability-isolate-declaration <readability/isolate-declaration>`, "Yes"
    :doc:`readability-magic-numbers <readability/magic-numbers>`,
@@ -364,6 +367,7 @@ Clang-Tidy Checks
    :doc:`readability-operators-representation <readability/operators-representation>`, "Yes"
    :doc:`readability-qualified-auto <readability/qualified-auto>`, "Yes"
    :doc:`readability-redundant-access-specifiers <readability/redundant-access-specifiers>`, "Yes"
+   :doc:`readability-redundant-casting <readability/redundant-casting>`, "Yes"
    :doc:`readability-redundant-control-flow <readability/redundant-control-flow>`, "Yes"
    :doc:`readability-redundant-declaration <readability/redundant-declaration>`, "Yes"
    :doc:`readability-redundant-function-ptr-dereference <readability/redundant-function-ptr-dereference>`, "Yes"
