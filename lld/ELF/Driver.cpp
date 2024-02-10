@@ -560,6 +560,7 @@ static void checkZOptions(opt::InputArgList &args) {
   // initialized yet. Claim them here.
   args::getZOptionValue(args, OPT_z, "max-page-size", 0);
   args::getZOptionValue(args, OPT_z, "common-page-size", 0);
+  getZFlag(args, "rel", "rela", false);
   for (auto *arg : args.filtered(OPT_z))
     if (!arg->isClaimed())
       warn("unknown -z value: " + StringRef(arg->getValue()));
@@ -1297,6 +1298,9 @@ static void readConfigs(opt::InputArgList &args) {
   config->ltoObjPath = args.getLastArgValue(OPT_lto_obj_path_eq);
   config->ltoPartitions = args::getInteger(args, OPT_lto_partitions, 1);
   config->ltoSampleProfile = args.getLastArgValue(OPT_lto_sample_profile);
+  config->ltoBBAddrMap =
+      args.hasFlag(OPT_lto_basic_block_address_map,
+                   OPT_no_lto_basic_block_address_map, false);
   config->ltoBasicBlockSections =
       args.getLastArgValue(OPT_lto_basic_block_sections);
   config->ltoUniqueBasicBlockSectionNames =

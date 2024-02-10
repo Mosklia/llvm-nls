@@ -357,12 +357,12 @@ Every processor supports every OS ABI (see :ref:`amdgpu-os`) with the following 
                                                                                                         Add product
                                                                                                         names.
 
-     ``gfx90a``                  ``amdgcn``   dGPU  - sramecc         - Absolute      - *rocm-amdhsa* *TBA*
-                                                    - tgsplit           flat
-                                                    - xnack             scratch                       .. TODO::
+     ``gfx90a``                  ``amdgcn``   dGPU  - sramecc         - Absolute      - *rocm-amdhsa* - AMD Instinct MI210 Accelerator
+                                                    - tgsplit           flat          - *rocm-amdhsa* - AMD Instinct MI250 Accelerator
+                                                    - xnack             scratch       - *rocm-amdhsa* - AMD Instinct MI250X Accelerator
                                                     - kernarg preload - Packed
-                                                                        work-item                       Add product
-                                                                        IDs                             names.
+                                                                        work-item                      
+                                                                        IDs                             
 
      ``gfx90c``                  ``amdgcn``   APU   - xnack           - Absolute      - *pal-amdpal*  - Ryzen 7 4700G
                                                                         flat                          - Ryzen 7 4700GE
@@ -1510,12 +1510,12 @@ The AMDGPU backend uses the following ELF header:
 
   * ``ELFABIVERSION_AMDGPU_HSA_V4`` is used to specify the version of AMD HSA
     runtime ABI for code object V4. Specify using the Clang option
-    ``-mcode-object-version=4``. This is the default code object
-    version if not specified.
+    ``-mcode-object-version=4``.
 
   * ``ELFABIVERSION_AMDGPU_HSA_V5`` is used to specify the version of AMD HSA
     runtime ABI for code object V5. Specify using the Clang option
-    ``-mcode-object-version=5``.
+    ``-mcode-object-version=5``. This is the default code object
+    version if not specified.
 
   * ``ELFABIVERSION_AMDGPU_PAL`` is used to specify the version of AMD PAL
     runtime ABI.
@@ -3949,6 +3949,10 @@ same *vendor-name*.
 Code Object V4 Metadata
 +++++++++++++++++++++++
 
+. warning::
+  Code object V4 is not the default code object version emitted by this version
+  of LLVM.
+
 Code object V4 metadata is the same as
 :ref:`amdgpu-amdhsa-code-object-metadata-v3` with the changes and additions
 defined in table :ref:`amdgpu-amdhsa-code-object-metadata-map-table-v4`.
@@ -3978,11 +3982,6 @@ defined in table :ref:`amdgpu-amdhsa-code-object-metadata-map-table-v4`.
 
 Code Object V5 Metadata
 +++++++++++++++++++++++
-
-.. warning::
-  Code object V5 is not the default code object version emitted by this version
-  of LLVM.
-
 
 Code object V5 metadata is the same as
 :ref:`amdgpu-amdhsa-code-object-metadata-v4` with the changes defined in table
