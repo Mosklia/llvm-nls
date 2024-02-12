@@ -1078,7 +1078,7 @@ struct FormatStyle {
   /// This option is renamed to ``BreakTemplateDeclarations``.
   /// \version 3.4
   /// @deprecated
-  BreakTemplateDeclarationsStyle AlwaysBreakTemplateDeclarations;
+  // BreakTemplateDeclarationsStyle AlwaysBreakTemplateDeclarations;
 
   /// A vector of strings that should be interpreted as attributes/qualifiers
   /// instead of identifiers. This can be useful for language extensions or
@@ -2296,7 +2296,7 @@ struct FormatStyle {
 
   /// The template declaration breaking style to use.
   /// \version 19
-  // BreakTemplateDeclarationsStyle BreakTemplateDeclarations;
+  BreakTemplateDeclarationsStyle BreakTemplateDeclarations;
 
   /// If ``true``, consecutive namespace declarations will be on the same
   /// line. If ``false``, each namespace is declared on a new line.
@@ -4822,8 +4822,6 @@ struct FormatStyle {
            AlwaysBreakAfterReturnType == R.AlwaysBreakAfterReturnType &&
            AlwaysBreakBeforeMultilineStrings ==
                R.AlwaysBreakBeforeMultilineStrings &&
-           AlwaysBreakTemplateDeclarations ==
-               R.AlwaysBreakTemplateDeclarations &&
            AttributeMacros == R.AttributeMacros &&
            BinPackArguments == R.BinPackArguments &&
            BinPackParameters == R.BinPackParameters &&
@@ -4841,6 +4839,7 @@ struct FormatStyle {
            BreakConstructorInitializers == R.BreakConstructorInitializers &&
            BreakInheritanceList == R.BreakInheritanceList &&
            BreakStringLiterals == R.BreakStringLiterals &&
+           BreakTemplateDeclarations == R.BreakTemplateDeclarations &&
            ColumnLimit == R.ColumnLimit && CommentPragmas == R.CommentPragmas &&
            CompactNamespaces == R.CompactNamespaces &&
            ConstructorInitializerIndentWidth ==
